@@ -1,0 +1,79 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTPS probes of every host OneCommand controls
+note: >-
+  Every probe returned HTTP 522 — a Cloudflare "connection timed out" error, meaning
+  Cloudflare is still fronting the onecommand.com zone but the origin server behind it
+  no longer answers. This is an origin outage, not a bot challenge or a WAF block: the
+  522 body is plain text ("error code: 522"), no interstitial, no CAPTCHA. Nothing was
+  served, so no /.well-known/ document exists to save and NO WellKnown or SecurityTxt
+  pointer is emitted in apis.yml. Recorded absence, not a presence.
+hosts:
+- host: www.onecommand.com
+  dns: 104.21.85.122, 172.67.205.180 (Cloudflare)
+  nameservers: cass.ns.cloudflare.com, kirk.ns.cloudflare.com
+  origin_reachable: false
+  probes:
+  - path: /.well-known/security.txt
+    status: 522
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 522
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 522
+    file: null
+  - path: /.well-known/api-catalog
+    status: 522
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 522
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 522
+    file: null
+  - path: /.well-known/agent.json
+    status: 522
+    file: null
+  - path: /llms.txt
+    status: 522
+    file: null
+  - path: /openapi.json
+    status: 522
+    file: null
+  - path: /swagger.json
+    status: 522
+    file: null
+  - path: /robots.txt
+    status: 522
+    file: null
+- host: portal.onecommand.com
+  dns: 172.67.205.180, 104.21.85.122 (Cloudflare wildcard, same zone)
+  origin_reachable: false
+  probes:
+  - path: /.well-known/security.txt
+    status: 522
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 522
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 522
+    file: null
+  - path: /.well-known/api-catalog
+    status: 522
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 522
+    file: null
+hosts_not_resolving:
+- api.onecommand.com
+- app.onecommand.com
+- my.onecommand.com
+- secure.onecommand.com
+- developer.onecommand.com
+- docs.onecommand.com
+summary:
+  documents_found: 0
+  hosts_probed: 2
+  pointer_emitted: false
